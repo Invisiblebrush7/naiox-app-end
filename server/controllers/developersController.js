@@ -28,7 +28,7 @@ async function newDeveloper(req, res) {
 }
 
 async function updateDeveloper(req, res) {
-	if (req.body.username != null) {
+	if (req.body.username !== null) {
 		res.developer.username = req.body.username;
 	}
 	if (req.body.email !== null) {

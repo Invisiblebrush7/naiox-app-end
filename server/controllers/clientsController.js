@@ -34,13 +34,13 @@ async function newClient(req, res) {
 
 async function updateClient(req, res) {
 	if (req.body.username != null) {
-		res.developer.username = req.body.username;
+		res.client.username = req.body.username;
 	}
 	if (req.body.email !== null) {
-		res.developer.email = req.body.email;
+		res.client.email = req.body.email;
 	}
 	if (req.body.password !== null) {
-		res.developer.password = req.body.password;
+		res.client.password = req.body.password;
 	}
 
 	try {
