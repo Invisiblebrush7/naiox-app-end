@@ -36,10 +36,10 @@ async function updateClient(req, res) {
 	if (req.body.username != null) {
 		res.client.username = req.body.username;
 	}
-	if (req.body.email !== null) {
+	if (req.body.email != null) {
 		res.client.email = req.body.email;
 	}
-	if (req.body.password !== null) {
+	if (req.body.password != null) {
 		res.client.password = req.body.password;
 	}
 
