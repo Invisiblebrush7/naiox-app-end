@@ -28,16 +28,16 @@ async function newDeveloper(req, res) {
 }
 
 async function updateDeveloper(req, res) {
-	if (req.body.username !== null) {
+	if (req.body.username != null) {
 		res.developer.username = req.body.username;
 	}
-	if (req.body.email !== null) {
+	if (req.body.email != null) {
 		res.developer.email = req.body.email;
 	}
-	if (req.body.password !== null) {
+	if (req.body.password != null) {
 		res.developer.password = req.body.password;
 	}
-	if (req.body.team !== null) {
+	if (req.body.team != null) {
 		res.developer.team = req.body.team;
 	}
 
