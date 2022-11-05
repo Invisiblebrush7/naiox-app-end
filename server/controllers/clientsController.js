@@ -32,6 +32,37 @@ async function newClient(req, res) {
 	}
 }
 
+async function updateClient(req, res) {
+	if (req.body.username != null) {
+		res.developer.username = req.body.username;
+	}
+	if (req.body.email !== null) {
+		res.developer.email = req.body.email;
+	}
+	if (req.body.password !== null) {
+		res.developer.password = req.body.password;
+	}
+
+	try {
+		const updatedClient = await res.client.save();
+		res.status(200).json(updatedClient);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+}
+
+async function deleteClient(req, res) {
+	try {
+		const client = res.client;
+		await res.client.remove();
+		res.status(200).json(client);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+}
+
 exports.index = index;
 exports.show = show;
 exports.newClient = newClient;
+exports.updateClient = updateClient;
+exports.deleteClient = deleteClient;
