@@ -42,7 +42,7 @@ router.get('/:id', clientsController.show);
  *     description: Create a new client
  *     responses:
  *       200:
- *         description: Creates a new client and returns is
+ *         description: Creates a new client and returns it
  */
 router.post('/', clientsController.newClient);
 

@@ -6,32 +6,69 @@ const Project = require('../models/Project');
 const projectsController = require('../controllers/projectsController');
 
 /**
- * Index - GET /projects
- * Get all projects
+ * @swagger
+ * /api/projects:
+ *   get:
+ *     tags:
+ *       - projects
+ *     description: Get all projects
+ *     responses:
+ *       200:
+ *         description: Returns an array of projects
  */
 router.get('/', projectsController.index);
 
 /**
- * Show - GET /developers/:id
- * Get info from specific project
+ * @swagger
+ * /api/projects/{id}:
+ *   get:
+ *     tags:
+ *       - projects
+ *     description: Get a project with the id === :id
+ *     parameters:
+ *       - in: id
+ *     responses:
+ *       200:
+ *         description: Returns the project with id === :id
  */
 router.get('/:id', projectsController.show);
 
 /**
- * Create - POST /projects
- * New project
+ * @swagger
+ * /api/projects:
+ *   post:
+ *     tags:
+ *       - projects
+ *     description: Create a new project
+ *     responses:
+ *       200:
+ *         description: Creates a new project and returns it
  */
 router.post('/', projectsController.newProject);
 
 /**
- * Update - PUT /projects/:id
- * Edit developer
+ * @swagger
+ * /api/projects/{id}:
+ *   update:
+ *     tags:
+ *       - project
+ *     description: Edit an existing project
+ *     responses:
+ *       200:
+ *         description: Receives changes for existing project, and returns it
  */
 router.put('/:id', getProject, projectsController.updateProject);
 
 /**
- * Destroy - DELETE /projects/:id
- * Remove developer
+ * @swagger
+ * /api/projects/{id}:
+ *   delete:
+ *     tags:
+ *       - projects
+ *     description: Removes project with id === :id
+ *     responses:
+ *       200:
+ *         description: Removes project with id === :id
  */
 router.delete('/:id', getProject, projectsController.deleteProject);
 

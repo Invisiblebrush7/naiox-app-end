@@ -6,33 +6,69 @@ const Developer = require('../models/Developer');
 const developersController = require('../controllers/developersController');
 
 /**
- * Index - GET /developers
- * Get all developers
+ * @swagger
+ * /api/developers:
+ *   get:
+ *     tags:
+ *       - developers
+ *     description: Get all developers
+ *     responses:
+ *       200:
+ *         description: Returns an array of developers
  */
 router.get('/', developersController.index);
 
 /**
- * Show - GET /developers/:id
- * Get info from specific developer
+ * @swagger
+ * /api/developers/{id}:
+ *   get:
+ *     tags:
+ *       - developers
+ *     description: Get a developer with the id === :id
+ *     parameters:
+ *       - in: id
+ *     responses:
+ *       200:
+ *         description: Returns the developer with id === :id
  */
 router.get('/:id', getDeveloper, developersController.show);
 
 /**
- * Create - POST /developers
- * New developer
+ * @swagger
+ * /api/developers:
+ *   post:
+ *     tags:
+ *       - developers
+ *     description: Create a new developer
+ *     responses:
+ *       200:
+ *         description: Creates a new developer and returns it
  */
-
 router.post('/', developersController.newDeveloper);
 
 /**
- * Update - PUT /developers
- * Edit developer
+ * @swagger
+ * /api/developers/{id}:
+ *   update:
+ *     tags:
+ *       - developers
+ *     description: Edit an existing developer
+ *     responses:
+ *       200:
+ *         description: Receives changes for existing developer, and returns it
  */
 router.put('/:id', getDeveloper, developersController.updateDeveloper);
 
 /**
- * Destroy - DELETE /developers/:id
- * Remove developer
+ * @swagger
+ * /api/developers/{id}:
+ *   delete:
+ *     tags:
+ *       - developers
+ *     description: Removes developer with id === :id
+ *     responses:
+ *       200:
+ *         description: Removes developer with id === :id
  */
 router.delete('/:id', getDeveloper, developersController.deleteDeveloper);
 

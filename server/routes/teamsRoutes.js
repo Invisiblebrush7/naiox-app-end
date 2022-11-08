@@ -6,33 +6,69 @@ const Team = require('../models/Team');
 const teamsController = require('../controllers/teamsController');
 
 /**
- * Index - GET /projects
- * Get all projects
+ * @swagger
+ * /api/teams:
+ *   get:
+ *     tags:
+ *       - teams
+ *     description: Get all teams
+ *     responses:
+ *       200:
+ *         description: Returns an array of teams
  */
 router.get('/', teamsController.index);
 
 /**
- * Show - GET /developers/:id
- * Get info from specific project
+ * @swagger
+ * /api/teams/{id}:
+ *   get:
+ *     tags:
+ *       - teams
+ *     description: Get a team with the id === :id
+ *     parameters:
+ *       - in: id
+ *     responses:
+ *       200:
+ *         description: Returns the team with id === :id
  */
 router.get('/:id', teamsController.show);
 
 /**
- * Create - POST /teams
- * New Team
+ * @swagger
+ * /api/teams:
+ *   post:
+ *     tags:
+ *       - teams
+ *     description: Create a new team
+ *     responses:
+ *       200:
+ *         description: Creates a new team and returns it
  */
-
 router.post('/', teamsController.newTeam);
 
 /**
- * Update - PUT /projects/:id
- * Edit developer
+ * @swagger
+ * /api/teams/{id}:
+ *   update:
+ *     tags:
+ *       - teams
+ *     description: Edit an existing team
+ *     responses:
+ *       200:
+ *         description: Receives changes for existing team, and returns it
  */
 router.put('/:id', getTeam, teamsController.updateTeam);
 
 /**
- * Destroy - DELETE /teams/:id
- * Remove developer
+ * @swagger
+ * /api/teams/{id}:
+ *   delete:
+ *     tags:
+ *       - teams
+ *     description: Removes team with id === :id
+ *     responses:
+ *       200:
+ *         description: Removes team with id === :id
  */
 router.delete('/:id', getTeam, teamsController.deleteTeam);
 
