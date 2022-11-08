@@ -27,6 +27,15 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/developers', developerRoutes);
 app.use('/api/teams', teamRoutes);
 
+// Swagger config
+const swaggerUI = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerOptions = require('./swagger.json');
+const swaggerSpec = swaggerJsDoc(swaggerOptions);
+
+// API docs
+app.use('', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+
 app.listen(3000, () => {
 	console.log('Server running');
 });
