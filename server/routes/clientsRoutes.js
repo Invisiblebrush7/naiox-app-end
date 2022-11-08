@@ -16,7 +16,7 @@ const clientsController = require('../controllers/clientsController');
  *       200:
  *         description: Returns an array of clients
  */
-router.get('/', clientsController.index);
+router.get('/', clientsController.newClient);
 
 /**
  * @swagger
@@ -26,7 +26,9 @@ router.get('/', clientsController.index);
  *       - Clients
  *     description: Get a client with the id === :id
  *     parameters:
- *       - in: id
+ *       - in: path
+ *         name: id
+ *         required: true
  *     responses:
  *       200:
  *         description: Returns the client with id === :id
@@ -35,27 +37,70 @@ router.get('/:id', clientsController.show);
 
 /**
  * @swagger
- * /api/clients:
+ * /api/clients/{id}:
  *   post:
  *     tags:
  *       - Clients
  *     description: Create a new client
+ *     parameters:
+ *
+ *       - in: formData
+ *         name: username
+ *         type: string
+ *         description: The client's username
+ *
+ *       - in: formData
+ *         name: email
+ *         type: string
+ *         description: The client's email
+ *
+ *       - in: formData
+ *         name: password
+ *         type: string
+ *         description: The client's password
+ *
  *     responses:
  *       200:
- *         description: Creates a new client and returns it
+ *         description: Receives changes for existing client, and returns it
+ *       400:
+ *         description: Bad Request - No client found with that id
  */
 router.post('/', clientsController.newClient);
 
 /**
  * @swagger
  * /api/clients/{id}:
- *   update:
+ *   put:
  *     tags:
  *       - Clients
  *     description: Edit an existing client
+ *     parameters:
+ *
+ *       - in: formData
+ *         name: username
+ *         type: string
+ *         description: The client's username
+ *
+ *       - in: formData
+ *         name: email
+ *         type: string
+ *         description: The client's email
+ *
+ *       - in: formData
+ *         name: password
+ *         type: string
+ *         description: The client's password
+ *
+ *       - in: formData
+ *         name: team
+ *         type: string
+ *         description: ID of the client's team
+ *
  *     responses:
  *       200:
  *         description: Receives changes for existing client, and returns it
+ *       400:
+ *         description: Bad Request - No client found with that id
  */
 router.put('/:id', getClient, clientsController.updateClient);
 
@@ -66,6 +111,10 @@ router.put('/:id', getClient, clientsController.updateClient);
  *     tags:
  *       - Clients
  *     description: Removes client with id === :id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
  *     responses:
  *       200:
  *         description: Removes client with id === :id

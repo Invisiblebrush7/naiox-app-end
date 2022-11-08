@@ -10,7 +10,7 @@ const teamsController = require('../controllers/teamsController');
  * /api/teams:
  *   get:
  *     tags:
- *       - teams
+ *       - Teams
  *     description: Get all teams
  *     responses:
  *       200:
@@ -23,10 +23,12 @@ router.get('/', teamsController.index);
  * /api/teams/{id}:
  *   get:
  *     tags:
- *       - teams
+ *       - Teams
  *     description: Get a team with the id === :id
  *     parameters:
- *       - in: id
+ *       - in: path
+ *         name: id
+ *         required: true
  *     responses:
  *       200:
  *         description: Returns the team with id === :id
@@ -35,27 +37,64 @@ router.get('/:id', teamsController.show);
 
 /**
  * @swagger
- * /api/teams:
+ * /api/teams/{id}:
  *   post:
  *     tags:
- *       - teams
+ *       - Teams
  *     description: Create a new team
+ *     parameters:
+ *       - in: formData
+ *         name: collaborators
+ *         type: array
+ *         items:
+ *           - type: string
+ *         description: Team's developers
+ *       - in: formData
+ *         name: teamLeader
+ *         type: string
+ *         description: Who is in charge of the team, needs an ID of a developer
+ *       - in: formData
+ *         name: teamName
+ *         type: string
+ *         description: The team's name
  *     responses:
  *       200:
- *         description: Creates a new team and returns it
+ *         description: Receives changes for existing project, and returns it
+ *       400:
+ *         description: Bad Request - No team found with that id
  */
 router.post('/', teamsController.newTeam);
 
 /**
  * @swagger
  * /api/teams/{id}:
- *   update:
+ *   put:
  *     tags:
- *       - teams
+ *       - Teams
  *     description: Edit an existing team
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *       - in: formData
+ *         name: collaborators
+ *         type: array
+ *         items:
+ *           - type: string
+ *         description: Team's developers
+ *       - in: formData
+ *         name: teamLeader
+ *         type: string
+ *         description: Who is in charge of the team
+ *       - in: formData
+ *         name: teamName
+ *         type: string
+ *         description: The team's name
  *     responses:
  *       200:
- *         description: Receives changes for existing team, and returns it
+ *         description: Receives changes for existing project, and returns it
+ *       400:
+ *         description: Bad Request - No team found with that id
  */
 router.put('/:id', getTeam, teamsController.updateTeam);
 
@@ -64,8 +103,12 @@ router.put('/:id', getTeam, teamsController.updateTeam);
  * /api/teams/{id}:
  *   delete:
  *     tags:
- *       - teams
+ *       - Teams
  *     description: Removes team with id === :id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
  *     responses:
  *       200:
  *         description: Removes team with id === :id

@@ -10,7 +10,7 @@ const projectsController = require('../controllers/projectsController');
  * /api/projects:
  *   get:
  *     tags:
- *       - projects
+ *       - Projects
  *     description: Get all projects
  *     responses:
  *       200:
@@ -23,10 +23,12 @@ router.get('/', projectsController.index);
  * /api/projects/{id}:
  *   get:
  *     tags:
- *       - projects
+ *       - Projects
  *     description: Get a project with the id === :id
  *     parameters:
- *       - in: id
+ *       - in: path
+ *         name: id
+ *         required: true
  *     responses:
  *       200:
  *         description: Returns the project with id === :id
@@ -35,27 +37,143 @@ router.get('/:id', projectsController.show);
 
 /**
  * @swagger
- * /api/projects:
+ * /api/projects/{id}:
  *   post:
  *     tags:
- *       - projects
+ *       - Projects
  *     description: Create a new project
+ *     parameters:
+ *
+ *       - in: formData
+ *         name: name
+ *         type: string
+ *         description: Name of the project
+ *
+ *       - in: formData
+ *         name: clientID
+ *         type: string
+ *         description: The client id
+ *
+ *       - in: formData
+ *         name: price
+ *         type: integer
+ *         description: Price of the project
+ *
+ *       - in: formData
+ *         name: startDate
+ *         type: string
+ *         description: Start of the project
+ *
+ *       - in: formData
+ *         name: endDate
+ *         type: string
+ *         description: End of the project
+ *
+ *       - in: formData
+ *         name: responsibleID
+ *         type: string
+ *         description: Responsible of the project
+ *
+ *       - in: formData
+ *         name: description
+ *         type: string
+ *         description: Description of what the project is about
+ *
+ *       - in: formData
+ *         name: assignedTeams
+ *         type: array
+ *         items:
+ *           - type: string
+ *         description: List of teams assigned to the project
+ *
+ *       - in: formData
+ *         name: priority
+ *         type: integer
+ *         minimum: 1
+ *         maximum: 3
+ *         description: What is the project priority (1 - Low, 2 - Medium, 3 - High)
+ *
+ *       - in: formData
+ *         name: status
+ *         type: string
+ *         description: Backlog - 1, In progress - 2, Finished - 3
+ *
  *     responses:
  *       200:
- *         description: Creates a new project and returns it
+ *         description: Receives changes for existing project, and returns it
+ *       400:
+ *         description: Bad Request - No project found with that id
  */
 router.post('/', projectsController.newProject);
 
 /**
  * @swagger
  * /api/projects/{id}:
- *   update:
+ *   put:
  *     tags:
- *       - project
+ *       - Projects
  *     description: Edit an existing project
+ *     parameters:
+ *
+ *       - in: formData
+ *         name: name
+ *         type: string
+ *         description: Name of the project
+ *
+ *       - in: formData
+ *         name: clientID
+ *         type: string
+ *         description: The client id
+ *
+ *       - in: formData
+ *         name: price
+ *         type: integer
+ *         description: Price of the project
+ *
+ *       - in: formData
+ *         name: startDate
+ *         type: string
+ *         description: Start of the project
+ *
+ *       - in: formData
+ *         name: endDate
+ *         type: string
+ *         description: End of the project
+ *
+ *       - in: formData
+ *         name: responsibleID
+ *         type: string
+ *         description: Responsible of the project
+ *
+ *       - in: formData
+ *         name: description
+ *         type: string
+ *         description: Description of what the project is about
+ *
+ *       - in: formData
+ *         name: assignedTeams
+ *         type: array
+ *         items:
+ *           - type: string
+ *         description: List of teams assigned to the project
+ *
+ *       - in: formData
+ *         name: priority
+ *         type: integer
+ *         minimum: 1
+ *         maximum: 3
+ *         description: What is the project priority (1 - Low, 2 - Medium, 3 - High)
+ *
+ *       - in: formData
+ *         name: status
+ *         type: string
+ *         description: Backlog - 1, In progress - 2, Finished - 3
+ *
  *     responses:
  *       200:
  *         description: Receives changes for existing project, and returns it
+ *       400:
+ *         description: Bad Request - No project found with that id
  */
 router.put('/:id', getProject, projectsController.updateProject);
 
@@ -64,8 +182,12 @@ router.put('/:id', getProject, projectsController.updateProject);
  * /api/projects/{id}:
  *   delete:
  *     tags:
- *       - projects
+ *       - Projects
  *     description: Removes project with id === :id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
  *     responses:
  *       200:
  *         description: Removes project with id === :id
