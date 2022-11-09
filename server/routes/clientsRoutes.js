@@ -16,7 +16,7 @@ const clientsController = require('../controllers/clientsController');
  *       200:
  *         description: Returns an array of clients
  */
-router.get('/', clientsController.newClient);
+router.get('/', clientsController.index);
 
 /**
  * @swagger
