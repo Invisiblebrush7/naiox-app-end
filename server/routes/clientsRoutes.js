@@ -78,6 +78,10 @@ router.post('/', clientsController.newClient);
  *     description: Edit an existing client
  *     parameters:
  *
+ *       - in: path
+ *         name: id
+ *         required: true
+ *
  *       - in: formData
  *         name: username
  *         type: string
@@ -92,11 +96,6 @@ router.post('/', clientsController.newClient);
  *         name: password
  *         type: string
  *         description: The client's password
- *
- *       - in: formData
- *         name: team
- *         type: string
- *         description: ID of the client's team
  *
  *     responses:
  *       200:

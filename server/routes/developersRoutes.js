@@ -16,7 +16,7 @@ const developersController = require('../controllers/developersController');
  *       200:
  *         description: Returns an array of developers
  */
-router.get('/', developersController.newDeveloper);
+router.get('/', developersController.index);
 
 /**
  * @swagger
@@ -80,6 +80,10 @@ router.post('/', developersController.newDeveloper);
  *       - Developers
  *     description: Edit an existing developer
  *     parameters:
+ *
+ *       - in: path
+ *         name: id
+ *         required: true
  *
  *       - in: formData
  *         name: username

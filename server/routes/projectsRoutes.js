@@ -115,6 +115,10 @@ router.post('/', projectsController.newProject);
  *     description: Edit an existing project
  *     parameters:
  *
+ *       - in: path
+ *         name: id
+ *         required: true
+ *
  *       - in: formData
  *         name: name
  *         type: string

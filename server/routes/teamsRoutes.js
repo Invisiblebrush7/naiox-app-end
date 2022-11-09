@@ -73,19 +73,23 @@ router.post('/', teamsController.newTeam);
  *       - Teams
  *     description: Edit an existing team
  *     parameters:
+ *
  *       - in: path
  *         name: id
  *         required: true
+ *
  *       - in: formData
  *         name: collaborators
  *         type: array
  *         items:
  *           - type: string
  *         description: Team's developers
+ *
  *       - in: formData
  *         name: teamLeader
  *         type: string
  *         description: Who is in charge of the team
+ *
  *       - in: formData
  *         name: teamName
  *         type: string
