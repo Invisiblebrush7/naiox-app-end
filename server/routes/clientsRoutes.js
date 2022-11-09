@@ -37,7 +37,7 @@ router.get('/:id', clientsController.show);
 
 /**
  * @swagger
- * /api/clients/{id}:
+ * /api/clients/:
  *   post:
  *     tags:
  *       - Clients
@@ -64,6 +64,8 @@ router.get('/:id', clientsController.show);
  *         description: Receives changes for existing client, and returns it
  *       400:
  *         description: Bad Request - No client found with that id
+ *       500:
+ *         description: Server Error
  */
 router.post('/', clientsController.newClient);
 

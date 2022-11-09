@@ -1,7 +1,6 @@
 const Client = require('../models/Client');
 
 async function index(req, res) {
-	console.log('Hi there');
 	try {
 		const clients = await Client.find({});
 		res.status(200).json(clients);
