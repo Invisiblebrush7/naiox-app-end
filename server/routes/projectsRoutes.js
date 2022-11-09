@@ -37,7 +37,7 @@ router.get('/:id', projectsController.show);
 
 /**
  * @swagger
- * /api/projects/{id}:
+ * /api/projects/:
  *   post:
  *     tags:
  *       - Projects

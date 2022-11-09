@@ -37,7 +37,7 @@ router.get('/:id', teamsController.show);
 
 /**
  * @swagger
- * /api/teams/{id}:
+ * /api/teams/:
  *   post:
  *     tags:
  *       - Teams

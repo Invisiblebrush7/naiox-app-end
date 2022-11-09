@@ -37,7 +37,7 @@ router.get('/:id', developersController.show);
 
 /**
  * @swagger
- * /api/developers/{id}:
+ * /api/developers/:
  *   post:
  *     tags:
  *       - Developers
