@@ -11,7 +11,7 @@
 			}
 		},
 		"basePath": "/",
-		"host": "localhost:3000"
+		"host": "localhost:5000"
 	},
 	"apis": ["./server/routes/**.js"]
 }
