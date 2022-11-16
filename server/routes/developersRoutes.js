@@ -6,33 +6,127 @@ const Developer = require('../models/Developer');
 const developersController = require('../controllers/developersController');
 
 /**
- * Index - GET /developers
- * Get all developers
+ * @swagger
+ * /api/developers:
+ *   get:
+ *     tags:
+ *       - Developers
+ *     description: Get all developers
+ *     responses:
+ *       200:
+ *         description: Returns an array of developers
  */
 router.get('/', developersController.index);
 
 /**
- * Show - GET /developers/:id
- * Get info from specific developer
+ * @swagger
+ * /api/developers/{id}:
+ *   get:
+ *     tags:
+ *       - Developers
+ *     description: Get a project with the id === :id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Returns the project with id === :id
  */
-router.get('/:id', getDeveloper, developersController.show);
+router.get('/:id', developersController.show);
 
 /**
- * Create - POST /developers
- * New developer
+ * @swagger
+ * /api/developers/:
+ *   post:
+ *     tags:
+ *       - Developers
+ *     description: Create a new developer
+ *     parameters:
+ *
+ *       - in: formData
+ *         name: username
+ *         type: string
+ *         description: The developer's username
+ *
+ *       - in: formData
+ *         name: email
+ *         type: string
+ *         description: The developer's email
+ *
+ *       - in: formData
+ *         name: password
+ *         type: string
+ *         description: The developer's password
+ *
+ *       - in: formData
+ *         name: team
+ *         type: string
+ *         description: ID of the developer's team
+ *
+ *     responses:
+ *       200:
+ *         description: Receives changes for existing developer, and returns it
+ *       400:
+ *         description: Bad Request - No developer found with that id
  */
-
 router.post('/', developersController.newDeveloper);
 
 /**
- * Update - PUT /developers
- * Edit developer
+ * @swagger
+ * /api/developers/{id}:
+ *   put:
+ *     tags:
+ *       - Developers
+ *     description: Edit an existing developer
+ *     parameters:
+ *
+ *       - in: path
+ *         name: id
+ *         required: true
+ *
+ *       - in: formData
+ *         name: username
+ *         type: string
+ *         description: The developer's username
+ *
+ *       - in: formData
+ *         name: email
+ *         type: string
+ *         description: The developer's email
+ *
+ *       - in: formData
+ *         name: password
+ *         type: string
+ *         description: The developer's password
+ *
+ *       - in: formData
+ *         name: team
+ *         type: string
+ *         description: ID of the developer's team
+ *
+ *     responses:
+ *       200:
+ *         description: Receives changes for existing developer, and returns it
+ *       400:
+ *         description: Bad Request - No developer found with that id
  */
 router.put('/:id', getDeveloper, developersController.updateDeveloper);
 
 /**
- * Destroy - DELETE /developers/:id
- * Remove developer
+ * @swagger
+ * /api/developers/{id}:
+ *   delete:
+ *     tags:
+ *       - Developers
+ *     description: Removes developer with id === :id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: Removes developer with id === :id
  */
 router.delete('/:id', getDeveloper, developersController.deleteDeveloper);
 

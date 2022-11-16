@@ -1,0 +1,17 @@
+{
+	"swagger": "2.0",
+	"swaggerDefinition": {
+		"info": {
+			"description": "Naiox Backend",
+			"version": "1.0.0",
+			"title": "Cool Naiox Api",
+			"contact": {
+				"author": "Bets, obviously",
+				"email": "aromanog1@gmail.com"
+			}
+		},
+		"basePath": "/",
+		"host": "localhost:5000"
+	},
+	"apis": ["./server/routes/**.js"]
+}
