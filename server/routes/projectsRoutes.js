@@ -4,6 +4,7 @@ const router = express.Router();
 
 const Project = require('../models/Project');
 const projectsController = require('../controllers/projectsController');
+const file = require('../middlewares/file');
 
 /**
  * Index - GET /projects
@@ -21,7 +22,7 @@ router.get('/:id', projectsController.show);
  * Create - POST /projects
  * New project
  */
-router.post('/', projectsController.newProject);
+router.post('/', file.single('image'), projectsController.newProject);
 
 /**
  * Update - PUT /projects/:id
