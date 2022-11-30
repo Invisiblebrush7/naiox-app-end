@@ -1,5 +1,6 @@
 'use strict';
 
+const cors = require('cors');
 const clientsRoutes = require('./server/routes/clientsRoutes');
 const teamRoutes = require('./server/routes/teamsRoutes');
 const projectRoutes = require('./server/routes/projectsRoutes');
@@ -23,6 +24,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // body-parser
 
+app.use(cors());
 app.use('/api/clients', clientsRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/developers', developerRoutes);
@@ -37,8 +39,27 @@ const swaggerSpec = swaggerJsDoc(swaggerOptions);
 // API docs
 app.use('', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
 	console.log('Server running in port ', port);
+});
+
+const socketIo = require('socket.io');
+
+const io = socketIo(server, {
+    cors: {
+      origin: '*'
+    }
+});
+
+io.on('connection', socket => {
+    console.log('Alguien se conecto!');
+
+    socket.on('share', data => {
+      console.log('El usuario ', data.email, ' necesita asistencia');
+
+      socket.broadcast.emit('onShared', data);
+    })
+
 });
 
 // Google OAuth
