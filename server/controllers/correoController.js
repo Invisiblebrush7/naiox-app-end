@@ -16,9 +16,9 @@ const enviarCorreo = (req = request, res = response) => {
 
     const opciones = {
         from: body.email,
-        subject: body.asunto,
+        subject: body.email + " : " + body.subject,
         to: process.env.GMAIL_EMAIL,
-        text: body.mensaje
+        text: body.message
     };
 
     config.sendMail(opciones, function(error, result){
