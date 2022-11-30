@@ -4,6 +4,7 @@ const router = express.Router();
 
 const Project = require('../models/Project');
 const projectsController = require('../controllers/projectsController');
+const file = require('../middlewares/file');
 
 /**
  * @swagger
@@ -104,7 +105,7 @@ router.get('/:id', projectsController.show);
  *       400:
  *         description: Bad Request - No project found with that id
  */
-router.post('/', projectsController.newProject);
+router.post('/', file.single('image'), projectsController.newProject);
 
 /**
  * @swagger
