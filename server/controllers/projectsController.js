@@ -19,6 +19,7 @@ async function show(req, res) {
 }
 
 async function newProject(req, res) {
+	console.log('New project route');
 	try {
 		const project = new Project({
 			clientID: req.body.clientID,
