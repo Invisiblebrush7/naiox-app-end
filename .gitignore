@@ -1,4 +1,9 @@
 .env
+<<<<<<< HEAD
 /node_modules
 .vscode
 package-lock.json
+=======
+node_modules/
+.vscode/settings.json
+>>>>>>> c1da2ca (removed an url that shouldnt be here hehe)
