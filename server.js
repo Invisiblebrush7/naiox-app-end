@@ -46,20 +46,19 @@ const server = app.listen(port, () => {
 const socketIo = require('socket.io');
 
 const io = socketIo(server, {
-    cors: {
-      origin: '*'
-    }
+	cors: {
+		origin: '*',
+	},
 });
 
-io.on('connection', socket => {
-    console.log('Alguien se conecto!');
+io.on('connection', (socket) => {
+	console.log('Alguien se conecto!');
 
-    socket.on('share', data => {
-      console.log('El usuario ', data.email, ' necesita asistencia');
+	socket.on('share', (data) => {
+		console.log('El usuario ', data.email, ' necesita asistencia');
 
-      socket.broadcast.emit('onShared', data);
-    })
-
+		socket.broadcast.emit('onShared', data);
+	});
 });
 
 // Google OAuth
@@ -68,12 +67,15 @@ const googleClient = new OAuth2Client(process.env.GOOGLE_ID);
 app.get('/google/:token', (req, res) => {
 	const token = req.params.token;
 	console.log('Will validate token ', token);
-	googleClient.verifyIdToken({ idToken: token }).then(response => {
-	  const data = response.getPayload();
-	  console.log('Data: ', data);
-	  res.send('Token is valid');
-	}).catch(err => {
-	  console.log('Failed to validate token');
-	  res.status(401).send();
-	});
-  });
+	googleClient
+		.verifyIdToken({ idToken: token })
+		.then((response) => {
+			const data = response.getPayload();
+			console.log('Data: ', data);
+			res.send('Token is valid');
+		})
+		.catch((err) => {
+			console.log('Failed to validate token');
+			res.status(401).send();
+		});
+});

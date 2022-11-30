@@ -50,6 +50,10 @@ const projectSchema = new mongoose.Schema({
 		min: 1,
 		max: 3,
 	},
+	image: {
+		type: String,
+		required: false,
+	},
 });
 
 module.exports = mongoose.model('Project', projectSchema);

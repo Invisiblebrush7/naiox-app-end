@@ -19,7 +19,7 @@ async function show(req, res) {
 }
 
 async function newProject(req, res) {
-	console.log('New project route');
+	console.log(req.file?.filename);
 	try {
 		const project = new Project({
 			clientID: req.body.clientID,
@@ -32,6 +32,7 @@ async function newProject(req, res) {
 			assignedTeams: req.body.assignedTeams,
 			responsibleID: req.body.responsibleID,
 			status: req.body.status,
+			image: req.file?.filename,
 		});
 		const newProject = await project.save();
 		res.status(201).json(newProject);
