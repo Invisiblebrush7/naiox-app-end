@@ -5,6 +5,7 @@ const clientsRoutes = require('./server/routes/clientsRoutes');
 const teamRoutes = require('./server/routes/teamsRoutes');
 const projectRoutes = require('./server/routes/projectsRoutes');
 const developerRoutes = require('./server/routes/developersRoutes');
+const correoRoutes = require('./server/routes/correoRoutes');
 
 //ENV file
 require('dotenv').config();
@@ -29,6 +30,7 @@ app.use('/api/clients', clientsRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/developers', developerRoutes);
 app.use('/api/teams', teamRoutes);
+app.use('/correo', correoRoutes);
 
 // Swagger config
 const swaggerUI = require('swagger-ui-express');
@@ -43,6 +45,7 @@ const server = app.listen(port, () => {
 	console.log('Server running in port ', port);
 });
 
+// Socket.io
 const socketIo = require('socket.io');
 
 const io = socketIo(server, {
@@ -76,4 +79,4 @@ app.get('/google/:token', (req, res) => {
 	  console.log('Failed to validate token');
 	  res.status(401).send();
 	});
-  });
+});
