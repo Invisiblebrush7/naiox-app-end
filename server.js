@@ -55,7 +55,7 @@ io.on('connection', socket => {
     console.log('Alguien se conecto!');
 
     socket.on('share', data => {
-      console.log('El usuario ', data.email, ' necesita asistencia');
+      console.log('El usuario', data.email, 'necesita asistencia');
 
       socket.broadcast.emit('onShared', data);
     })
